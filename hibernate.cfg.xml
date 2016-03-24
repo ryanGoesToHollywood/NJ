@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+ "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+ 
+<hibernate-configuration>
+ <session-factory>
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.password">password</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost/app</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.default_schema">app</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <property name="hibernate.connection.pool_size">1</property>
+  
+  <property name="hibernate.connection.autocommit">true</property>
+  
+    <!-- Enable Hibernate's automatic session context management -->
+  <property name="current_session_context_class">thread</property>
+  
+    <!-- this tell Hibernate to update the DDL when it starts, very useful for development,
+    dangerous in production.  create? validate? update?create-drop, validate -->
+  <property name="hbm2ddl.auto">update</property>
+  
+    <!-- use annotated classes first before looking for mapping.hbm.xml files -->
+  <property name="hibernate.mapping.precedence">class, hbm</property>
+	
+	<!-- mappings for annotated classes -->
+  <mapping class="com.nj.Problem"/>
+  <mapping class="com.nj.Solution"/>
+  
+ </session-factory>
+</hibernate-configuration>

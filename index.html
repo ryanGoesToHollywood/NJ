@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>NeuralJuice</title>
+<meta charset="UTF-8"> 
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta name="description" content="NeuralJuice solves your problems.  Discover your solution by 'juicing' your mind with insight and advice.">
+<meta name="keywords" content="NeuralJuice, problem solver">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+<script src="angular.js"></script>
+</head>
+<body>
+<div ng-app="njApp" ng-controller="mainCtrl">  <!-- main div -->
+<div ng-show="switchme">   <!-- begin homepage -->
+	<div class="centered"> 
+	<!--<p class="pgeneral"><img src="juice2.jpg" alt=""></p>
+	<h1>NeuralJuice</h1>
+	<p id="pmain">the problem solver</p>-->
+	<form autocomplete="off" novalidate> 
+  		<input type="text" size="50" value="" autofocus
+  		ng-model="query" my-enter="get(query); post(query)">
+	</form>
+	<button ng-click="search(); get(query); post(query)">Search</button>
+	</div>
+	<div class="centered">
+		<a id="about" href="about.html">about</a>
+	</div>
+</div>                     <!-- end homepage -->
+<div ng-hide="switchme">   <!-- begin page2 -->
+	<!-- <div id="divheader">
+	  <p  id="NJtag"><img src="juice4.jpg" alt=""><span>NeuralJuice</span></p>
+	</div>-->
+	<form autocomplete="off">
+    	<input type="text" size="50" ng-model="query"  my-enter="post(query); get(query)">
+  	</form>
+  	<div id="categories">
+  			<table>
+	  		<tr>
+	  			<td>Category<br>Chain/Search</td>
+	    		<td class="problem" ng-click="cat4()">{{problemsOb.problemCategory4}}</td>
+	    		<td class="problem" ng-click="cat3()">{{problemsOb.problemCategory3}}</td>
+	    		<td class="problem" ng-click="cat2()">{{problemsOb.problemCategory2}}</td>
+	    		<td class="problem" ng-click="cat1()">{{problemsOb.problemCategory1}}</td>
+	    		<td class="problem" onclick="location.href='prob.html'">{{noProblemExists}}</td>
+	  		</tr>	 
+		</table>
+  	</div>
+	<div class="indent">
+		<table>
+			<tr>
+				<td id="rankbutton">NJ Rank</td><td><pre>   </pre></td><td id="solutionsheader">Solutions</td>
+			</tr>
+		</table>
+		<table>
+	  		<tr ng-repeat="x in problemsOb.solutions  | orderBy:'-solutionRank'">
+	  			<td id="rank">{{x.solutionRank}}</td>
+	    		<td id="solution">{{x.solution}}</td>
+	    		<td class="juicing"><button ng-click="postSweetSol(x.id)">Sweet Juice</button></td>
+	    		<td class="juicing"><button ng-click="postSourSol(x.id)">Sour Juice</button></td>
+	    		<td class="juicing"><button ng-click="postFlagSol(x.id)">FLAG</button> <div></div></td>
+	    		
+	    		<td id="url"><a id="urla" href="http://{{x.exploreURL}}">{{x.exploreURL}}</a></td>
+	    		<td class="juicing"><button ng-click="postSweetURL(x.id)">Sweet Juice</button></td>
+	    		<td class="juicing"><button ng-click="postSourURL(x.id)">Sour Juice</button></td>
+	    		<td class="juicing"><button ng-click="postFlagURL(x.id)">FLAG</button></td>		    		
+	  		</tr>
+		</table>
+	</div>
+	<button onclick="location.href='sol.html'">Add your own solution</button>
+	
+<div> <!-- begin category search -->
+	<table>
+		<tr ng-repeat="y in catProbs">
+			<td class="category1" ng-click="goToProblemResults(y)">{{y}}</td>
+		</tr>
+	</table>
+	
+</div> <!-- end category search -->
+</div>  <!-- end page2 -->
+</div>  <!-- end main div -->
+</body>
+</html>
